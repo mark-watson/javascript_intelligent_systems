@@ -13,7 +13,7 @@ new_neural_network = (num_input, num_hidden, num_output) ->
     inputs: []
     hidden: Array(num_hidden)
     outputs: Array(num_output)
-    w1: Array(num_input)   # will be num_input * num_hidden
+    w1: Array(num_input)   # will be num_input  * num_hidden
     w2: Array(num_hidden)  # will be num_hidden * num_output
     output_errors: Array(num_output)
     hidden_errors: Array(num_hidden)
