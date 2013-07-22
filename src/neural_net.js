@@ -157,6 +157,7 @@ function recall(nn, inputs) {
 
 
 function train(nn) {
+  var iter, error;
   for (iter = 0; iter < 150000; iter += 1) {
     error = train_helper(nn);
     if ((iter % 800) === 0) {
@@ -175,7 +176,7 @@ function train(nn) {
 
 
 function test_nn() {
-  var error, iter, test_network = new_neural_network(3, 3, 3);
+  var test_network = new_neural_network(3, 3, 3);
   add_training_example(test_network, [0.1, 0.1, 0.9], [0.9, 0.1, 0.1]);
   add_training_example(test_network, [0.1, 0.9, 0.1], [0.1, 0.1, 0.9]);
   add_training_example(test_network, [0.9, 0.1, 0.1], [0.1, 0.9, 0.1]);
