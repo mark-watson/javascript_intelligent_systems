@@ -4,12 +4,13 @@
  * This notice must remain in this file and derived files.
  */
 
-// This file contains the example code for the Chapter on the Seantic Web
+// This file contains the example code for the Chapter on the Semantic Web
 
 var stardog = require("stardog");
 var conn = new stardog.Connection();
 conn.setEndpoint("http://localhost:5820/");
 conn.setCredentials("admin", "admin");
 conn.query("news", "select distinct * where { ?s ?p ?o } limit 5", null, 5, 0, function (data) {
-    console.log(data.results.bindings);
-})
+  console.log(data.results.bindings);
+});
+
