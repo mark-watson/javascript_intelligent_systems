@@ -17,7 +17,8 @@ client.connect(function (err) {
   if (err) {
     return console.error('could not connect to postgres', err);
   }
-  client.query("INSERT INTO article (uri, title, text) values ('http://test.com', 'title zombies', 'zombies are coming')", function (err, result) {
+  console.log(JSON.stringify('{}'));
+  client.query("INSERT INTO article (uri, title, text, metadata) values ('http://test.com', 'title zombies', 'zombies are coming', '{\"page\":3}'::json)", function (err, result) {
     if (err) {
       return console.error('error running query', err);
     }
@@ -27,6 +28,4 @@ client.connect(function (err) {
   });
 });
 
-
-// example 3: hierarchical JSON data:
 
