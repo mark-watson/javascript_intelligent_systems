@@ -25,7 +25,7 @@ client.connect(function (err) {
     console.log(result);
     for (i = 0; i < result.rowCount; i += 1) {
       console.log(result.rows[i]);
-      temp = result.rows[i];//.metadata.page;
+      temp = result.rows[i]; //.metadata.page;
       console.log("* metadata page = " + temp);
     }
     client.end();

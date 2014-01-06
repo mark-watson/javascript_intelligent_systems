@@ -4,6 +4,6 @@
  * This notice must remain in this file and derived files.
  */
 
-function add_node (node_id edge_list) {
+function add_node (node_id, edge_list) {
 	
 }
