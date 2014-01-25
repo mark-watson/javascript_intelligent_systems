@@ -6,26 +6,36 @@
 
 /*jslint node: true */
 
+
+// example 4: hierarchical JSON data:
+
 var i,
+  temp,
   pg = require('pg'),
   conString = "postgres://markw@localhost/news",
   client = new pg.Client(conString);
 
-// example 2: adding data, querying new data, deleting data:
+// example 1: simple query:
 
 client.connect(function (err) {
   if (err) {
     return console.error('could not connect to postgres', err);
   }
-  console.log(JSON.stringify('{}'));
-  client.query("INSERT INTO article (uri, title, text, metadata) values ('http://test.com', 'title zombies', 'zombies are coming', '{\"page\":\"3\"}'::json)", function (err, result) {
+  client.query("SELECT uri, metadata->'page' AS page FROM article", function (err, result) {
     if (err) {
       return console.error('error running query', err);
     }
     console.log(result);
-
+    for (i = 0; i < result.rowCount; i += 1) {
+      console.log(result.rows[i]);
+      temp = result.rows[i]; //.metadata.page;
+      console.log("* metadata page = " + temp);
+    }
     client.end();
   });
 });
+
+
+
 
 
