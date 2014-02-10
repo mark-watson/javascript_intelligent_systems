@@ -13,15 +13,13 @@ neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
   if (error) {
     throw error;
   }
-  // START n=node:node_auto_index(title="Fishing Season Opens")
   graph.query([
-    //'START n=node:nodeIndexName(title="Fishing Season Opens")',
     'START n=node(*)',
     'DELETE n'].join('\n'),
     function (err, results) {
       if (err) {
         throw err;
       }
-      console.log(JSON.stringify(results, null, 5)); // printing may help to visualize the returned structure
+      console.log(JSON.stringify(results, null, 5));
     });
 });

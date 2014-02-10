@@ -13,9 +13,7 @@ neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
   if (error) {
     throw error;
   }
-  // START n=node:node_auto_index(title="Fishing Season Opens")
   graph.query([
-    //'START n=node:nodeIndexName(title="Fishing Season Opens")',
     'START n=node(*)',
     'RETURN n'].join('\n'),
     function (err, results) {
@@ -24,11 +22,9 @@ neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
       }
       for (i = 0; i < results.length; i += 1) {
         relationship = results[i].r;
-        node = results[i].m;
-
-        // ... do something with the nodes and relationships we just grabbed
+        node = results[i].n;
+        console.log(node);
       }
-
-      console.log(JSON.stringify(results, null, 5)); // printing may help to visualize the returned structure
+      console.log(JSON.stringify(results, null, 5));
     });
 });
