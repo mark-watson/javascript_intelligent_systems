@@ -1,2 +1,2 @@
-#Code examples for Building Intelligent Systes in JavaScript
+# Code examples for the book "Building Intelligent Systems in JavaScript"
 
