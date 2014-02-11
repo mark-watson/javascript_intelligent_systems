@@ -12,4 +12,5 @@ request({
   for (i = 0; i < results.length; i++) {
     console.log(results[i]['uri'] + "\t" + results[i]['label'] + "\t" + results[i]['description']);
   }
+  console.log(body);
 });

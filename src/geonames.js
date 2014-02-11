@@ -1,6 +1,11 @@
-/**
- * Created by markw on 2/10/14.
- */
+var geode = require ("geode");
 
-//  TBD
+var geoname_username = process.env.GEONAME_USER;
+
+var geo = new geode(geoname_username, {language: 'en', country : 'US'});
+
+geo.search({name :'Sedona'}, function(err, results){
+  console.log(results);
+});
+
 
