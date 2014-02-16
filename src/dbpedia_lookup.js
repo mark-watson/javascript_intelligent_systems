@@ -6,7 +6,8 @@ request({
   headers: {
     'Accept': 'application/json'
   },
-  uri: "http://lookup.dbpedia.org/api/search.asmx/KeywordSearch?QueryString=" + query
+  uri: "http://lookup.dbpedia.org/api/search.asmx/KeywordSearch?QueryString=" + query,
+  timeout: 5000
 }, function (error, response, body) {
   var results = JSON.parse(body)['results'], i;
   for (i = 0; i < results.length; i++) {
