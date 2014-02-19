@@ -1,16 +1,20 @@
-/**
- * Copyright 2013 Mark Watson. All rights reserved.
- * This code may be used under the AGPL version 3 license.
- * This notice must remain in this file and derived files.
- */
-
-// This file contains the example code for the Chapter on the Semantic Web
-
 var stardog = require("stardog");
-var conn = new stardog.Connection();
+
+var i, conn = new stardog.Connection();
+
 conn.setEndpoint("http://localhost:5820/");
 conn.setCredentials("admin", "admin");
-conn.query("news", "select distinct * where { ?s ?p ?o } limit 5", null, 5, 0, function (data) {
-  console.log(data.results.bindings);
+
+conn.query({database: "sample",
+  query: "select distinct * where { ?s ?p ?o }",
+  limit: 10,
+  offset: 0},
+  function (data) {
+  //console.log(data.results.bindings);
+  for (i=0; i<data.results.bindings.length; i++) {
+    console.log(data.results.bindings[i]['s']['value'] + "\n  " +
+      data.results.bindings[i]['p']['value'] + "\n  " +
+      data.results.bindings[i]['o']['value'] + ".");
+  }
 });
 
