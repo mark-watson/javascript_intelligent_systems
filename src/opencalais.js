@@ -10,7 +10,7 @@ calais_client.fetch(function(results) {
   for (i = 0; i < results.length; i += 1) {
     //console.log(results[i]);
     if (results[i]['_type'] && results[i]['name']) {
-      console.log(results[i]['_type'] + " " + results[i]['name']);
+      console.log(results[i]['_type'] + ": " + results[i]['name']);
     }
   }
 });
