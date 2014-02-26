@@ -1,64 +1,73 @@
-/**
- * Copyright 2013 Mark Watson. All rights reserved.
- * This code may be used under the AGPL version 3 license.
- * This notice must remain in this file and derived files.
- */
-
 /*jslint node: true */
 
+var fs = require('fs');  // for reading text files
 
+// Sample data for these examples (coerced to strings):
 
-//   From github readme for the Natural project:
+var economy = ' ' + fs.readFileSync('data/texts/economy.txt');
+var politics = ' ' + fs.readFileSync('data/texts/politics.txt');
+var sports = ' ' + fs.readFileSync('data/texts/sports.txt');
+
+//   Derived from the github readme for the Natural project:
 
 var natural = require('natural'),
   tokenizer = new natural.WordTokenizer();
-console.log(tokenizer.tokenize("your dog has flees."));
 
-console.log(natural.JaroWinklerDistance("dixon","dicksonx"));
-console.log(natural.JaroWinklerDistance('not', 'same'));
+console.log("\n-- Tokenized sample text in politics.txt:");
+console.log(tokenizer.tokenize(politics));
 
-console.log(natural.LevenshteinDistance("ones","onez"));
-console.log(natural.LevenshteinDistance('one', 'one'));
+console.log("\n-- Use Porter Stemmer on a single word:");
+console.log(natural.PorterStemmer.stem("dogs"));
 
-console.log(natural.PorterStemmer.stem("words"));
+natural.PorterStemmer.attach();  // add methods to string
 
-natural.PorterStemmer.attach();
-console.log("i am waking up to the sounds of chainsaws".tokenizeAndStem());
-console.log("chainsaws".stem());
+console.log("\n-- Use Porter Stemmer text in file sports.txt:");
+console.log(sports.tokenizeAndStem());
 
 var classifier = new natural.BayesClassifier();
 
-classifier.addDocument('i am long qqqq', 'buy');
-classifier.addDocument('short gold', 'sell');
-classifier.addDocument('sell gold', 'sell');
-
+classifier.addDocument(' '+economy, 'economy');
+classifier.addDocument(' '+politics, 'politics');
+classifier.addDocument(' '+sports, 'sports');
 classifier.train();
 
-console.log(classifier.classify('i am short silver'));
-console.log(classifier.classify('i am long copper'));
+console.log("\n-- Bayesian classifier test results:");
+
+console.log(classifier.classify('The President and Congress went on vacation.'));
+console.log(classifier.classify('Tax rates might be effected by quantitative easing.'));
+console.log(classifier.classify('I like baseball more than football.'));
 
 var NGrams = natural.NGrams;
 
-console.log(NGrams.bigrams('some words here'));
-console.log(NGrams.trigrams('some other words here'));
+console.log("\n-- 2grams in text from file sports.txt:");
+console.log(NGrams.bigrams(sports));
+console.log("\n-- 2grams in text from file sports.txt:");
+console.log(NGrams.trigrams(sports));
 
 var TfIdf = natural.TfIdf,
   tfidf = new TfIdf();
 
-tfidf.addDocument('this document is about node.');
-tfidf.addDocument('this document is about ruby.');
-tfidf.addDocument('this document is about ruby and node.');
-tfidf.addDocument('this document is about node. it has node examples');
+tfidf.addDocument(' '+economy, 'economy');
+tfidf.addDocument(' '+politics, 'politics');
+tfidf.addDocument(' '+sports, 'sports');
 
-console.log('node --------------------------------');
-tfidf.tfidfs('node', function(i, measure) {
+console.log('\n-- tfidf for word "economy" in three test documents:');
+tfidf.tfidfs('economy', function(i, measure) {
   console.log('document #' + i + ' is ' + measure);
 });
 
-console.log('ruby --------------------------------');
-tfidf.tfidfs('ruby', function(i, measure) {
+console.log('\n-- tfidf for word "politics" in three test documents:');
+console.log('politics --------------------------------');
+tfidf.tfidfs('politics', function(i, measure) {
   console.log('document #' + i + ' is ' + measure);
 });
+
+console.log('\n-- tfidf for word "sports" in three test documents:');
+console.log('sports --------------------------------');
+tfidf.tfidfs('sports', function(i, measure) {
+  console.log('document #' + i + ' is ' + measure);
+});
+
 
 var wordnet_data_path = process.env.WORDNET_DATA;
 console.log("Wordnet data path: " + wordnet_data_path);
