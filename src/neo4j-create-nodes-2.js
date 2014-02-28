@@ -7,11 +7,10 @@ neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
   if (error) {
     throw error;
   }
-  graph.query("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r",
+
+  graph.query("CREATE (n:Person {name:'Mark Watson'})-[r:WROTE]->(a:Article {title: 'Fishing Season Opens', text: 'Fishing season opened today.'})",
     function (err, results) {
-      if (err) {
-        console.log("Error: " + err);
-      }
-      console.log(JSON.stringify(results, null, 5));
+      if (err) { console.log("Error: " + err); }
     });
 });
+

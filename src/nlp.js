@@ -8,8 +8,6 @@ var economy = ' ' + fs.readFileSync('data/texts/economy.txt');
 var politics = ' ' + fs.readFileSync('data/texts/politics.txt');
 var sports = ' ' + fs.readFileSync('data/texts/sports.txt');
 
-//   Derived from the github readme for the Natural project:
-
 var natural = require('natural'),
   tokenizer = new natural.WordTokenizer();
 
@@ -24,11 +22,13 @@ natural.PorterStemmer.attach();  // add methods to string
 console.log("\n-- Use Porter Stemmer text in file sports.txt:");
 console.log(sports.tokenizeAndStem());
 
+console.log("dog dogs Dog dogged".tokenizeAndStem());
+
 var classifier = new natural.BayesClassifier();
 
-classifier.addDocument(' '+economy, 'economy');
-classifier.addDocument(' '+politics, 'politics');
-classifier.addDocument(' '+sports, 'sports');
+classifier.addDocument(economy, 'economy');
+classifier.addDocument(politics, 'politics');
+classifier.addDocument(sports, 'sports');
 classifier.train();
 
 console.log("\n-- Bayesian classifier test results:");
@@ -41,54 +41,60 @@ var NGrams = natural.NGrams;
 
 console.log("\n-- 2grams in text from file sports.txt:");
 console.log(NGrams.bigrams(sports));
-console.log("\n-- 2grams in text from file sports.txt:");
+console.log("\n-- 3grams in text from file sports.txt:");
 console.log(NGrams.trigrams(sports));
 
 var TfIdf = natural.TfIdf,
   tfidf = new TfIdf();
 
-tfidf.addDocument(' '+economy, 'economy');
-tfidf.addDocument(' '+politics, 'politics');
-tfidf.addDocument(' '+sports, 'sports');
+tfidf.addDocument(economy, 'economy');
+tfidf.addDocument(politics, 'politics');
+tfidf.addDocument(sports, 'sports');
 
 console.log('\n-- tfidf for word "economy" in three test documents:');
+console.log('economy:');
 tfidf.tfidfs('economy', function(i, measure) {
   console.log('document #' + i + ' is ' + measure);
 });
 
 console.log('\n-- tfidf for word "politics" in three test documents:');
-console.log('politics --------------------------------');
+console.log('politics:');
 tfidf.tfidfs('politics', function(i, measure) {
   console.log('document #' + i + ' is ' + measure);
 });
 
 console.log('\n-- tfidf for word "sports" in three test documents:');
-console.log('sports --------------------------------');
+console.log('sports:');
 tfidf.tfidfs('sports', function(i, measure) {
   console.log('document #' + i + ' is ' + measure);
 });
 
 
+console.log('\n-- tfidf for word "Congress" in three test documents:');
+console.log('Congress:');
+tfidf.tfidfs('Congress', function(i, measure) {
+  console.log('document #' + i + ' is ' + measure);
+});
+
+
+console.log('\n-- tfidf for word "taxes" in three test documents:');
+console.log('taxes:');
+tfidf.tfidfs('taxes', function(i, measure) {
+  console.log('document #' + i + ' is ' + measure);
+});
+
 var wordnet_data_path = process.env.WORDNET_DATA;
 console.log("Wordnet data path: " + wordnet_data_path);
 var wordnet = new natural.WordNet(wordnet_data_path);
 
-wordnet.get(4424418, 'n', function(result) {
-  console.log('------------------------------------');
-  console.log(result.lemma);
-  console.log(result.pos);
-  console.log(result.gloss);
-  console.log(result.synonyms);
-});
+var pos_map = {v: 'verb', n: 'noun', a: 'adjective', s: 'adjective', r: 'adverb'};
 
-wordnet.lookup('node', function(results) {
+wordnet.lookup('bank', function(results) {
   results.forEach(function(result) {
-    console.log('------------------------------------');
-    console.log(result.synsetOffset);
-    console.log(result.pos);
-    console.log(result.lemma);
-    console.log(result.synonyms);
-    console.log(result.pos);
-    console.log(result.gloss);
+    console.log('\n-- Wordnet data for "bank":');
+    console.log(' part of speech: ' + pos_map[result.pos]);
+    console.log(' lemma: ' + result.lemma);
+    console.log(' synonyms: ' + result.synonyms);
+    console.log(' gloss: ' + result.gloss);
   });
 });
