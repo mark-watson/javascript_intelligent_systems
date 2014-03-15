@@ -9,6 +9,7 @@ var learningRate_w1 = 0.1, learningRate_w2 = 0.05;
 function new_neural_network(num_input, num_hidden, num_output) {
   var i, h, o, data;
   data = {
+    allowedError: 0.05,
     numInput: num_input,
     numHidden: num_hidden,
     numOutput: num_output,
@@ -31,12 +32,12 @@ function new_neural_network(num_input, num_hidden, num_output) {
   }
   for (i = 0; i < num_input; i += 1) {
     for (h = 0; h < num_hidden; h += 1) {
-      data.w1[i][h] = 0.05 * (Math.random() - 0.5);
+      data.w1[i][h] = 0.01 * (Math.random() - 0.005);
     }
   }
   for (h = 0; h < num_hidden; h += 1) {
     for (o = 0; o < num_output; o += 1) {
-      data.w2[h][o] = 0.005 * (Math.random() - 0.5);
+      data.w2[h][o] = 0.005 * (Math.random() - 0.0025);
     }
   }
   return data;
@@ -77,6 +78,9 @@ function forward_pass(nn) {
   for (o = 0; o < nn.numOutput; o += 1) {
     nn.outputs[o] = sigmoid(nn.outputs[o]);
   }
+  //if (isNaN(nn.outputs[0])) {
+  //  console.log("NaN");
+  //}
 }
 
 function reset_weights(nn) {
@@ -93,7 +97,6 @@ function reset_weights(nn) {
       nn.w2[h][o] = 0.005 * (Math.random() - 0.5);
     }
   }
-  //console.log(nn);
 }
 
 function train_helper(nn) {
@@ -163,11 +166,11 @@ function train(nn) {
     if ((iter % 800) === 0) {
       console.log(error);
     }
-    if (error < 0.05) {
+    if (error < nn.allowedError) {
       break;
     }
     // reset weights: if network get stuck then start over:
-    if (error > 2.0  && (iter % 5111) === 0) {
+    if (error > 2.0  && (iter % 7111) === 0) {
       console.log("** reset weights");
       reset_weights(nn);
     }
@@ -186,5 +189,57 @@ function test_nn() {
   console.log(recall(test_network, [0.11, 0.9, 0.06]));
 }
 
-// test everything:
-test_nn();
+// simple test:
+//test_nn();
+
+function test_cancer_data () {
+  var fs = require('fs');  // for reading text files
+  var data = ' ' + fs.readFileSync('data/breast_cancer_data.txt');
+  var lines = data.match(/[^\r\n]+/g);
+  var i, j, ok, size = lines.length;
+  var training = [], testing = [];
+  for (i=0; i<size; i += 1) {
+    attributes = lines[i].split(',');
+    attributes.shift(); // discard first element
+    for (j=0; j<10; j += 1) {
+      attributes[j] = parseFloat(attributes[j]) * 0.09;
+      //attributes[j] = parseInt(attributes[j], 10) * 0.1;
+    }
+    attributes[9] = attributes[9] < 0.3 ? 0.1 : 0.9;
+
+    //console.log(attributes);
+    ok = true;
+    for (j=0; j<9; j+=1) {
+      if (isNaN(attributes[j])) {
+        ok = false;
+      }
+    }
+    if (ok) {
+      if (Math.random() < 0.8) {
+        training.push(attributes);
+      } else {
+        testing.push(attributes);
+      }
+    }
+  }
+  //console.log("TRAINING" + training);
+  //console.log("TESTING" + testing);
+  var test_network = new_neural_network(9, 4, 1);
+  size = training.length;
+  for (i=0; i<size; i += 1) {
+    add_training_example(test_network, training[i].slice(0, -1), [training[i][9]]);
+  }
+  test_network.allowedError = 29;
+  train(test_network);
+  console.log("Testing with samples not used for training:)");
+  size = testing.length;
+  for (i=0; i<size; i += 1) {
+    console.log("result: " +
+                recall(test_network, testing[i].slice(0, -1)) +
+                " should be: " + testing[i][9]);
+  }
+
+}
+
+// test with breast cancer data:
+test_cancer_data();
