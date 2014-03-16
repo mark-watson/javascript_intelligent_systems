@@ -231,7 +231,7 @@ function test_cancer_data () {
   }
   test_network.allowedError = 29;
   train(test_network);
-  console.log("Testing with samples not used for training:)");
+  console.log("Testing with samples not used for training:");
   size = testing.length;
   for (i=0; i<size; i += 1) {
     console.log("result: " +
