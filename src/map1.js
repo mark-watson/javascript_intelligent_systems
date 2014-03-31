@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-console.error("\nEntering map1.js...");
-
 var readline = require('readline');
 
 var rl = readline.createInterface({
@@ -15,11 +13,11 @@ rl.on('line', function (data) {
   for (i=0; i<lines.length; i++) {
     var line = lines[i];
     var tokens = line.split("\t");
-    console.error("* tokens: " + tokens);
+    //console.error("* tokens: " + tokens);
     var wikipedia_article_title = tokens[0]; // unused in this example
     var json_data = JSON.parse(tokens[1]);
     var i, people = json_data["Person"];
-    console.error("* people: " + people);
+    //console.error("* people: " + people);
     if (people != null) {
       for (i=0; i<people.length; i++) {
         console.log(people[i] + "\t" + 1);
