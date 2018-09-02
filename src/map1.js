@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// @flow
+
 var readline = require('readline');
 
 var rl = readline.createInterface({

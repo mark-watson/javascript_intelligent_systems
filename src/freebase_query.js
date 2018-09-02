@@ -1,6 +1,8 @@
+// @flow
+
 var request = require("request");
 
-var google_api_key = process.env.GOOGLE_API_KEY;
+var google_api_key = process.env.GOOGLE_API_KEY || '';
 
 var URL = "https://www.googleapis.com/freebase/v1/mqlread";
 var json_query = [

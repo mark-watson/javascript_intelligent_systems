@@ -1,3 +1,5 @@
+// @flow
+
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/jsbook');
 

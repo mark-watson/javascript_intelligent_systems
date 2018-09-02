@@ -1,3 +1,5 @@
+// @flow
+
 var SparqlClient = require('sparql-client');
 var endpoint = 'http://dbpedia.org/sparql';
 var i, result_array;

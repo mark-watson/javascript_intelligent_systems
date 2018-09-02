@@ -1,3 +1,5 @@
+// @flow
+
 var request = require("request");
 var jsdom = require("jsdom");
 var htmlparser = require("htmlparser");

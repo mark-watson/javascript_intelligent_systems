@@ -1,3 +1,4 @@
+// @flow
 /*jslint node: true */
 
 var fs = require('fs');  // for reading text files

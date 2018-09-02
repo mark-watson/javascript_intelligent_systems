@@ -1,3 +1,5 @@
+// @flow
+
 var aws = require('aws-sdk');
 aws.config.region = 'us-east-1';
 var s3 = new aws.S3();

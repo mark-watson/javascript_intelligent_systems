@@ -1,8 +1,10 @@
+// @flow
+
 var request = require("request");
 
 var query = "Mark Louis Watson";
 
-var google_api_key = process.env.GOOGLE_API_KEY;
+var google_api_key = process.env.GOOGLE_API_KEY || '';
 //console.log(google_api_key);
 
 var URL = "https://www.googleapis.com/freebase/v1/search";

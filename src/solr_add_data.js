@@ -1,3 +1,4 @@
+// @flow
 var solr = require('solr-client');
 
 // assume server is running on localhost:

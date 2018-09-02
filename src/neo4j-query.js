@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Copyright 2013 Mark Watson. All rights reserved.
  * This code may be used under the Apache 2 license.

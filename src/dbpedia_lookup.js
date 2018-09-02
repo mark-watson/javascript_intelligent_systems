@@ -1,3 +1,5 @@
+// @flow
+
 var request = require("request");
 
 var query = "New+York";

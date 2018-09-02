@@ -1,3 +1,5 @@
+// @flow
+
 var geode = require ("geode");
 
 var geoname_username = process.env.GEONAME_USER;

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// @flow
+
 console.error("Entering reduce1.js...");
 
 var readline = require('readline');
@@ -10,7 +12,7 @@ var rl = readline.createInterface({
   terminal: false
 });
 
-var previous = null;
+var previous = '';
 var count = 0;
 
 rl.on('line', function (line) {

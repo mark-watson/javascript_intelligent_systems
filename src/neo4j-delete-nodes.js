@@ -1,5 +1,5 @@
+// @flow
 /*jslint node: true */
-
 
 var neo4j = require('neo4j-js');
 

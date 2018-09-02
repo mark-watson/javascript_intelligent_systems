@@ -1,3 +1,5 @@
+// @flow
+
 var stardog = require("stardog");
 
 var i, conn = new stardog.Connection();

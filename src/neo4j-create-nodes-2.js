@@ -1,3 +1,4 @@
+// @flow
 /*jslint node: true */
 
 

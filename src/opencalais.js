@@ -1,3 +1,5 @@
+// @flow
+
 var calais = require ("calais");
 
 var open_calais_api_key = process.env.OPEN_CALAIS_KEY;
