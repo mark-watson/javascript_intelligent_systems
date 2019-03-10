@@ -1,10 +1,10 @@
 // @flow
 
-var aws = require('aws-sdk');
+const aws = require('aws-sdk');
 aws.config.region = 'us-east-1';
-var s3 = new aws.S3();
+const s3 = new aws.S3();
 
-var params = {
+const params = {
   Bucket: 'mark64323762346hfjhjfs',
   ACL: 'private' // could also be public-read, public-read-write, or authenticated-read
 };

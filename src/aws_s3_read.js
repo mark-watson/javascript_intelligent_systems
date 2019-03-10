@@ -1,9 +1,9 @@
 // @flow
 
-var aws = require('aws-sdk');
+const aws = require('aws-sdk');
 aws.config.region = 'us-east-1';
 
-var s3 = new aws.S3(), index, bucket;
+const s3 = new aws.S3(), index, bucket;
 
 s3.listBuckets(function(err, data) {
   console.log("\n** list all buckets owned by this account:\n");
@@ -13,9 +13,10 @@ s3.listBuckets(function(err, data) {
   }
 });
 
-var params = {
+const params = {
   Bucket: 'mark64323762346hfjhjfs'
 };
+
 s3.listObjects(params, function(error, data) {
   console.log("\n** list things in our test bucket:\n");
   if (error) {
@@ -25,7 +26,7 @@ s3.listObjects(params, function(error, data) {
   }
 });
 
-var params = {
+const params = {
   Bucket: 'mark64323762346hfjhjfs',
   Key: 'mykey1',
   ResponseContentType: 'string'

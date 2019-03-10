@@ -1,10 +1,10 @@
-// @flow
+// NOTE: Google turned off public access to Freebase - this example no longer works
 
-var request = require("request");
+const request = require("request");
 
-var google_api_key = process.env.GOOGLE_API_KEY || '';
+const google_api_key = process.env.GOOGLE_API_KEY || '';
 
-var URL = "https://www.googleapis.com/freebase/v1/mqlread";
+const URL = "https://www.googleapis.com/freebase/v1/mqlread";
 var json_query = [
     { "/people/person/date_of_birth": null,
       "/people/person/gender": null,

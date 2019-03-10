@@ -1,8 +1,8 @@
-// @flow
+// NOTE: Google turned off public access to Freebase - this example no longer works
 
-var request = require("request");
+const request = require("request");
 
-var query = "Mark Louis Watson";
+const query = "Mark Louis Watson";
 
 var google_api_key = process.env.GOOGLE_API_KEY || '';
 //console.log(google_api_key);

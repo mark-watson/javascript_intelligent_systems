@@ -1,5 +1,10 @@
 # Code examples for the book "Building Intelligent Systems in JavaScript"
 
+## NOTE: this 2ndedition git branch is work in progress. Please use main git branch until this new code is merged.
+
+## do a `git checkout master` to get back to the main branch
+
+
 All of my code in this repository may be used under either the Apache 2, the LGPL version 3 or the GPL 3 licenses - you choose depending on which license works best for you.
 
 You may purchase this book at https://leanpub.com/aijavascript

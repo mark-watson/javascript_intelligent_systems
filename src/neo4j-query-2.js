@@ -1,15 +1,4 @@
-// @flow
-
-/**
- * Copyright 2013 Mark Watson. All rights reserved.
- * This code may be used under the Apache 2 license.
- * This notice must remain in this file and derived files.
- */
-
-/*jslint node: true */
-
-
-var neo4j = require('neo4j-js');
+const neo4j = require('neo4j-js');
 
 neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
   if (error) {

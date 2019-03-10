@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-// @flow
+const readline = require('readline');
 
-var readline = require('readline');
-
-var rl = readline.createInterface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   terminal: false

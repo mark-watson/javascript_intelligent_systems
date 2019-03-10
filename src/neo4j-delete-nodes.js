@@ -1,7 +1,4 @@
-// @flow
-/*jslint node: true */
-
-var neo4j = require('neo4j-js');
+const neo4j = require('neo4j-js');
 
 neo4j.connect('http://localhost:7474/db/data/', function (error, graph) {
   if (error) {
