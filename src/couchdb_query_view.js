@@ -1,7 +1,5 @@
-// @flow
-
-var cradle = require('cradle');
-var db = new(cradle.Connection)().database('news');
+const cradle = require('cradle');
+const db = new(cradle.Connection)().database('news');
 
 //db.view('titles/all', function (error, doc) {
 db.view('titles/fishing', function (error, doc) {

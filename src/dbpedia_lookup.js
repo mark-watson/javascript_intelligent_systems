@@ -1,8 +1,6 @@
-// @flow
+const request = require("request");
 
-var request = require("request");
-
-var query = "New+York";
+const query = "New+York";
 
 request({
   headers: {

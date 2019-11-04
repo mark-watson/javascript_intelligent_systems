@@ -1,9 +1,7 @@
-// @flow
-
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/jsbook');
 
-var connection = mongoose.connection;
+const connection = mongoose.connection;
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', function callback () {
   console.log("Connection opened to MongoDB");
@@ -11,8 +9,8 @@ connection.once('open', function callback () {
     title: String,
     url: String,
     content: String});
-  var Article = mongoose.model('Article', articleSchema);
-  var article1 =
+  const Article = mongoose.model('Article', articleSchema);
+  const article1 =
     new Article({title: 'Fishing Season',
                  url: 'http://test.com/fishing',
                  content: 'Fishing season started yesterday.'});
@@ -20,7 +18,7 @@ connection.once('open', function callback () {
     if (err) console.log(err);
     console.log(article);
   });
-  var article2 =
+  const article2 =
     new Article({title: 'Stock Bubble',
       url: 'http://test.com/bubble',
       content: 'The bubble occurred when QE stopped.'});

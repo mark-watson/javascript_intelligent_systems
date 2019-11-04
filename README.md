@@ -1,5 +1,22 @@
 # Code examples for the book "Building Intelligent Systems in JavaScript"
 
+## NOTE: the 2nd edition of this book is a work in progress. Use the git repo https://github.com/mark-watson/javascript_intelligent_systems_2nd_edition when it is made public
+
+The github repo for the second edition examples will be made when the 2nd edition is published.
+
+There will be a free update for people who purchased the first edition.
+
+The main changes for the second edition are:
+
+- update to JavaScript version ES6
+- added TensorFlow.js examples
+- added more NLP examples using Deep Learning
+- Semantic web and linked data
+- JavaScript implementation of {KBCreator](http://kgcreator.com)} (this example is AGPL licensed but an alternative commercial friendly lincense will be available for $50)
+
+## do a `git checkout master` to get back to the main branch
+
+
 All of my code in this repository may be used under either the Apache 2, the LGPL version 3 or the GPL 3 licenses - you choose depending on which license works best for you.
 
 You may purchase this book at https://leanpub.com/aijavascript

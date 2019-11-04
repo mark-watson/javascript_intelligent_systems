@@ -1,14 +1,14 @@
 // @flow
 
-var aws = require('aws-sdk');
+const aws = require('aws-sdk');
 aws.config.region = 'us-east-1';
-var s3 = new aws.S3();
+const s3 = new aws.S3();
 
-var params_bucket = {
+const params_bucket = {
   Bucket: 'mark64323762346hfjhjfs'
 };
 
-var params_object = {
+const params_object = {
   Bucket: 'mark64323762346hfjhjfs',
   Key: 'mykey1'
 };

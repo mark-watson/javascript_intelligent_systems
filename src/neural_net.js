@@ -1,10 +1,10 @@
 /**
- * Copyright 2013 Mark Watson. All rights reserved.
+ * Copyright 2013-2019 Mark Watson. All rights reserved.
  * This code may be used under the Apache 2 license.
  * This notice must remain in this file and derived files.
  */
 
-var learningRate_w1 = 0.1, learningRate_w2 = 0.05;
+const learningRate_w1 = 0.1, learningRate_w2 = 0.05;
 
 function new_neural_network(num_input, num_hidden, num_output) {
   var i, h, o, data;
