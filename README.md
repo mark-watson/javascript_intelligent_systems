@@ -14,9 +14,6 @@ The main changes for the second edition are:
 - Semantic web and linked data
 - JavaScript implementation of {KBCreator](http://kgcreator.com)} (this example is AGPL licensed but an alternative commercial friendly lincense will be available for $50)
 
-## do a `git checkout master` to get back to the main branch
-
-
 All of my code in this repository may be used under either the Apache 2, the LGPL version 3 or the GPL 3 licenses - you choose depending on which license works best for you.
 
 You may purchase this book at https://leanpub.com/aijavascript
