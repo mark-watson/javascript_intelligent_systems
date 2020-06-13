@@ -16,6 +16,11 @@ The main changes for the second edition are:
 
 ## do a `git checkout master` to get back to the main branch
 
+## Donate on Patreon to support all of my projects
+
+Please visit [https://www.patreon.com/markwatson](https://www.patreon.com/markwatson) and sign up to donate $1/month
+
+## open Source
 
 All of my code in this repository may be used under either the Apache 2, the LGPL version 3 or the GPL 3 licenses - you choose depending on which license works best for you.
 
